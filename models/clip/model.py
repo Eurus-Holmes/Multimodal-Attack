@@ -6,7 +6,8 @@ import torch
 import torch.nn.functional as F
 from torch import nn
 
-import models.clip as clip
+# import models.clip as clip
+from models.clip import clip
 
 class Bottleneck(nn.Module):
     expansion = 4
