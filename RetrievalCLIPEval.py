@@ -14,7 +14,7 @@ import torch.nn.functional as F
 import torch.backends.cudnn as cudnn
 from torch.utils.data import DataLoader
 
-from models import clip
+from models.clip import clip
 from models.tokenization_bert import BertTokenizer
 
 from transformers import BertForMaskedLM
