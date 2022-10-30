@@ -12,6 +12,17 @@ pip install -r requirements.txt
 
 Flickr30k: https://drive.google.com/drive/folders/19tKLlNvBN3mbXHDYZzCkQ3I2jNxjjHFT?usp=sharing
 
+
+## Evaluation
+|Adv|Instruction|
+|---|---|
+|0|No Attack|
+|1|Attack Text|
+|2|Attack Image|
+|3|Attack Both (vanilla)|
+|4|Co-Attack|
+
+
 ## Attack Clip
 
 ```
