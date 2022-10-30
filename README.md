@@ -39,3 +39,7 @@ python RetrievalEval.py --adv 4 --gpu 0 --cls \
 --output_dir output/Retrieval_flickr \
 --checkpoint /content/Co-Attack/flickr30k.pth
 ```
+
+## Experiments
+
+Colab: https://colab.research.google.com/drive/1ohH4Mo4b15UcAlXUP7_Ta3Dxg_2XhX14?usp=sharing
