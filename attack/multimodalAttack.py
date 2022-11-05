@@ -1,6 +1,7 @@
 import torch
 from transformers import BatchEncoding
 import torch.nn.functional as F
+import textattack
 
 def equal_normalize(x):
     return x
@@ -101,7 +102,34 @@ class MultiModalAttacker():
             criterion = torch.nn.KLDivLoss(reduction='batchmean')
 
             with torch.no_grad():
-                text_adv = self.text_attacker.attack(self.net, text, k)
+                print(self.text_attacker)
+                print(type(text))
+
+                from textattack.shared import AttackedText
+
+                samples = [(t, self.text_attacker.goal_function.get_output(AttackedText(t))) for t in text]
+
+                # from datasets import Dataset
+                # from textattack.datasets import HuggingFaceDataset
+
+                # t_dataset = HuggingFaceDataset.from_list(list(text))
+                # print(t_dataset)
+
+                attack_args = textattack.AttackArgs(num_examples=20)
+        
+  
+                self.text_attacker = textattack.Attacker(self.text_attacker, samples, attack_args)
+                text_adv = list(self.text_attacker.attack_dataset(samples))
+                # text_adv = self.text_attacker.attack(self.net, text, k)
+                # text_adv = []
+                # for t in list(text):
+                #   print(t)
+                #   adv_t = self.text_attacker.attack(str(t), 1)
+                #   print(adv_t)
+                #   text_adv.append(adv_t) 
+                print(text_adv)
+
+
                 text_input = self.tokenizer(text_adv, padding='max_length', truncation=True, max_length=max_length,
                                             return_tensors="pt").to(device)
                 text_adv_output = self.net.inference_text(text_input)
