@@ -168,7 +168,41 @@ class MultiModalAttacker():
 
         if adv == 1 or adv == 3 or adv == 4 or adv == 5:
             with torch.no_grad():
-                text_adv = self.text_attacker.attack(self.net, text, k)
+
+                from textattack.shared import AttackedText
+                print("text: ", text)
+                samples = []
+
+                for t in text:
+                  print(t)
+                  print(type(self.text_attacker))
+                  label = 1
+                  attack_result = self.text_attacker.attack(t, label)
+                  print(attack_result)
+                  samples.append(attack_result)
+                
+
+
+                # samples = [(t, self.text_attacker.goal_function.get_output(AttackedText(t))) for t in text]
+
+                print("samples: ", samples)
+
+                # from datasets import Dataset
+                # from textattack.datasets import HuggingFaceDataset
+
+                # t_dataset = HuggingFaceDataset.from_list(list(text))
+                # print(t_dataset)
+
+                # attack_args = textattack.AttackArgs(num_examples=20)
+        
+  
+                # self.text_attacker = textattack.Attacker(self.text_attacker, samples, attack_args)
+                # text_adv = list(self.text_attacker.attack_dataset(samples))
+                text_adv = samples
+                print("TEXTATTACK")
+                print(text_adv)
+
+                # text_adv = self.text_attacker.attack(self.net, text, k)
         else:
             text_adv = text
 
