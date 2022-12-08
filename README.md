@@ -1,6 +1,6 @@
 # Multimodal-Attack
 
-From https://github.com/adversarial-for-goodness/Co-Attack
+Adapted from https://github.com/adversarial-for-goodness/Co-Attack
 
 ```
 conda create -n coAttack python=3.7
